@@ -1,5 +1,5 @@
-import { useState, useEffect, Fragment } from "react";
-import { useHistory, useLocatio, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./index.css";
 import SideBar from "./components/SideBar";
 import Item from "./components/Item";
@@ -33,6 +33,11 @@ const Task = () => {
     fetchData(setDatas, userId);
   }, []);
 
+  useEffect(() => {
+    // 使用瀏覽器 API 更新文件標題
+    document.title = "待辦事項";
+  });
+
   return (
     <section className="container mt-3" id="to-do-list">
       <div className="row">
@@ -45,7 +50,7 @@ const Task = () => {
         <div className="col-12 col-md-8">
           <div className="row">
             {datas.map((data) => {
-              const { id, schedule } = data;
+              const { id } = data;
               if (par.schedule != undefined) {
                 if (par.schedule === "finish" && data.schedule === "已完成")
                   return <Item key={id} userId={userId} data={data} />;

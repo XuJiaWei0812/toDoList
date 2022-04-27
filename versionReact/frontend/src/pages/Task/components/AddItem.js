@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import Swal from "sweetalert2";
-import moment from "moment";
 
 const AddItem = ({userId}) => {
   const [title, setTitle] = useState("");
@@ -52,7 +51,7 @@ const AddItem = ({userId}) => {
               confirmButtonText: "確定",
             }).then(function () {
               console.log(response);
-              window.location = "/";
+              window.location.reload();
             });
           })
           .catch((error) => {
