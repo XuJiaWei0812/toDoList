@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>待辦事項</title>
+    <!-- CSS文件載入 -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
+        integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    </link>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!--使用者登入及註冊/start -->
+    <section class="container d-flex justify-content-center p-5">
+        <div class="card p-3 mt-5">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link login active" href="#">帳號登陸</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link register" href="#">帳號註冊</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div>
+                    <form action="post" id="login" enctype="multipart/form-data">
+                        <input type="email" autocomplete="off" id="email_l" name="email_l"
+                            class="form-control border border-dark" placeholder="信箱">
+                        <input type="password" autocomplete="off" id="password_l" name="password_l"
+                            class="form-control border-dark mt-3" placeholder="密碼">
+                        <div class="alert alert-danger mt-3" id="alert_login" role="alert">
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-block mt-4">Login</button>
+                    </form>
+                </div>
+                <div>
+                    <form action="post" id="register" enctype="multipart/form-data">
+                        <input type="email" autocomplete="off" name="email_r" id="email_r"
+                            class="form-control border-dark" placeholder="信箱">
+                        <input type="password" autocomplete="off" name="password_r" id="password_r"
+                            class="form-control border-dark mt-3" placeholder="密碼">
+                        <input type="password" autocomplete="off" name="password_r_check" id="password_r_check"
+                            class="form-control border-dark mt-3" placeholder="密碼確認">
+                        <div class="alert alert-danger mt-3" id="alert_register"  role="alert">
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-block mt-3">Signup</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-footer text-muted text-center">
+                版權所有© 2021 Awu
+            </div>
+        </div>
+    </section>
+    <!-- 使用者登入及註冊/end -->
+    <!-- js文件載入 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.2.0/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

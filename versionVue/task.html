@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>待辦事項</title>
+    <!-- CSS文件載入 -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
+        integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    </link>
+    <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+    <!--待辦便利貼與側邊欄/start -->
+    <section class="container mt-3" id="to-do-list">
+        <div class="row">
+            <header class="col-12">
+                <h2>
+                    <i class="fas fa-tasks"></i>&nbsp;&nbsp;待辦事項-{{schedule}}&nbsp;&nbsp;<i
+                        class="fas fa-tasks"></i></i>
+                </h2>
+                <hr class="pr-5">
+            </header>
+            <!-- 待辦便利貼/start -->
+            <div class="col-12 col-md-8">
+                <div class="row" v-if="storageArray.length">
+                    <!-- 待辦便利貼/start -->
+                    <div class="col-12 col-lg-6" v-for="(value, index) in storageArray" :name="value.schedule"
+                        :key="value.date">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- 標題/start -->
+                                <h4 class="card-title" v-if="value.editshow==false">
+                                    <strong>{{value.title}}</strong>
+                                </h4>
+                                <div class="input-group input-group-lg mb-3" v-if="value.editshow==true">
+                                    <input type="text"
+                                        :class="{'form-control':true,'font-weight-bold':true ,'border-0': true }"
+                                        name="title" v-model="value.title">
+                                </div>
+                                <!-- 標題/end -->
+                                <!-- 內容/start -->
+                                <p class="card-text" v-if="value.editshow==false">{{value.content}}</p>
+                                <div class="input-group input-group-lg mb-3" v-if="value.editshow==true">
+                                    <textarea rows="3" :class="{'form-control':true,'border-0': true }" name="content"
+                                        v-model="value.content">{{value.content}}</textarea>
+                                </div>
+                                <!-- 內容/end -->
+                                <div class="form-check" v-if="value.editshow==true">
+                                    <input class="form-check-input" type="radio" :name="'schedule'+index"
+                                        :id="'schedule'+index" v-model="value.schedule" value="未完成" checked>
+                                    <label class="form-check-label">
+                                        未完成
+                                    </label>
+                                </div>
+                                <div class="form-check" v-if="value.editshow==true">
+                                    <input class="form-check-input" type="radio" :name="'schedule'+index"
+                                        :id="'schedule'+index" v-model="value.schedule" value="已完成">
+                                    <label class="form-check-label">
+                                        已完成
+                                    </label>
+                                </div>
+                                <!-- 日期/start -->
+                                <div class="d-flex justify-content-between">
+                                    <span class="d-block text-secondary mt-4 icon datetime">{{value.updated_at}}</span>
+                                    <i class="fas fa-check d-block text-secondary text-success ml-2 mt-4"
+                                        v-if="value.schedule=='已完成'">已完成</i>
+                                    <i class="fas fa-times d-block text-danger text-success ml-2 mt-4"
+                                        v-if="value.schedule=='未完成'">未完成</i>
+                                </div>
+                                <!-- 日期/end -->
+                                <!-- 編輯&刪除/start -->
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-link card_button" name="edit"
+                                        v-if="value.editshow==false" @click="edit_show(index)">
+                                        <i class="fas fa-edit fa-2x text-warning"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-link card_button" name="exit_success"
+                                        v-if="value.editshow==true" @click="edit_task(index)">
+                                        <i class="far fa-check-square fa-2x  ml-3 text-success"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-link card_button" name="delete"
+                                        v-if="value.editshow==false" @click="delete_task(index)">
+                                        <i class="fas fa-trash-alt fa-2x ml-3 text-danger" name="delete"></i>
+                                    </button>
+                                </div>
+                                <!-- 編輯&刪除/end -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 待辦便利貼/end -->
+                </div>
+            </div>
+            <!-- 待辦便利貼/end -->
+
+            <!-- 側邊欄/start -->
+            <div class="col-12 col-md-4">
+                <!-- 新增事項/start -->
+                <div class="bg-white p-3 mb-3 border rounded left-show">
+                    <button id="sign_out" type="button" class="btn btn-lg btn-block bg-danger" @click="clear_storage()">
+                        <strong><i class="fas fa-sign-out-alt"></i> 會員登出</strong>
+                    </button>
+                </div>
+                <div class="bg-white p-3 mb-3 border rounded left-show">
+                    <button id="add_button" type="button" class="btn btn-lg btn-block" data-toggle="modal"
+                        data-target="#exampleModal">
+                        <strong>✚ 新增事項</strong>
+                    </button>
+                </div>
+                <!-- 新增事項視窗(FROM)! -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">新增事項</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form @submit="add_task" method="post" id="add_task">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <input required type="text" class="form-control my-3" placeholder="輸入事項標題"
+                                            name="title" v-model="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea required class="form-control" rows="3" placeholder="輸入事項內容"
+                                            name="content" v-model="content"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">新增</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 新增事項/end -->
+                <!-- 未完成事項/start -->
+                <div class="bg-white p-3 mb-3 border rounded left-show">
+                    <h5 class="mb-3">
+                        <strong>未完成事項</strong>
+                    </h5>
+                    <ul class="list-category">
+                        <li class="media mb-3" v-for="(value, index) in storageArray" v-if="value.schedule=='未完成'">
+                            <div class="media-body">
+                                <div class="mt-0 mb-1 text-truncate" style="max-width: 180px;">
+                                    {{value.title}}
+                                </div>
+                                <span class="d-block mt-3 text-secondary icon datetime">{{value.updated_at}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 未完成事項/end -->
+                <!-- 事項分類/start -->
+                <div class="bg-white p-3 mb-3 border rounded left-show">
+                    <h5 class="mb-3">
+                        <strong>分類</strong>
+                    </h5>
+                    <ul class="list-category category">
+                        <li>
+                            <a href="#" @click="get_task_type('所有')">所有
+                                <span class="badge badge-pill badge-secondary ml-2">{{all_count}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" @click="get_task_type('已完成')">已完成
+                                <span class="badge badge-pill badge-secondary ml-2">{{complete_count}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" @click="get_task_type('未完成')">未完成
+                                <span class="badge badge-pill badge-secondary ml-2">{{undone_count}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 事項分類/end -->
+            </div>
+            <!-- 側邊欄/end -->
+        </div>
+    </section>
+    <!-- 待辦便利貼與側邊欄/end -->
+    <!-- js文件載入 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/task.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.2.0/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>
