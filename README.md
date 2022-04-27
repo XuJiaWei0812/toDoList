@@ -11,9 +11,13 @@
 ## 使用技術
 
 前端:HTML、CSS、JavaScript
+
 前端框架:vue、react hook、Bootstrap(css)
+
 後端:PHP、Python
+
 後端框架:flask
+
 資料庫:MySQL
 
 ## 功能介紹
