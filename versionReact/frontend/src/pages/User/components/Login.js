@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -23,6 +23,11 @@ const Login = () => {
       window.location = "/task"
     }
   }, []);
+
+  useEffect(() => {
+    // 使用瀏覽器 API 更新文件標題
+    document.title = "會員登陸";
+  });
 
   function handleSubmit(event) {
     event.preventDefault();

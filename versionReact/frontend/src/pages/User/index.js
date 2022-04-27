@@ -1,4 +1,3 @@
-import { useState, useEffect, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,10 +9,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 const User = () => {
-  useEffect(() => {
-    // 使用瀏覽器 API 更新文件標題
-    document.title = "會員註冊";
-  });
 
   return (
     <section className="container d-flex justify-content-center p-5">
