@@ -1,0 +1,36 @@
+@charset "UTF-8";
+* {
+  font-family: 微軟正黑體;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: #89B5AF;
+  font-weight: bold;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  cursor: pointer;
+  text-decoration: none;
+  color: #C0C0C0;
+}
+
+.userCard.card {
+    width: 400px;
+    border: none
+}
+
+.swal2-confirm,.swal2-cancel{
+  position: relative;
+  width: 100px;
+  font-weight: bold;
+}
+

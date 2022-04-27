@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+* {
+  font-family: 微軟正黑體;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: #89B5AF;
+  font-weight: bold;
+}
+button.btn.btn-danger{
+  padding: 5px;
+  font-size: 21px;
+}
+.row{
+  width: 100%;
+}
+a,
+.nav-item,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+header h2 {
+  color: #2c2c2c;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  font-size: 36px;
+}
+
+header hr {
+  width: 35%;
+  border-top: solid 5px #D0CAB2;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  margin-bottom: 1.6rem;
+  padding: 1rem;
+}
+
+.icon {
+  font-family: "Font Awesome 5 Free";
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.datetime:before {
+  content: "\f073";
+  padding-right: 0.4rem;
+}
+
+.card_button:hover {
+  font-size: 1.2rem;
+}
+
+#add_button {
+  background-color: #96C7C1;
+  color: #2c2c2c;
+}
+
+#add_button:hover {
+  font-size: 24px;
+  transform: font-size scale(1.03);
+}
+#sign_out {
+  color: white;
+}
+#sign_out:hover {
+  font-size: 24px;
+  transform: font-size scale(1.03);
+}
+
+h5,
+.category li a {
+  color: #000;
+}
+
+h5 a:hover,
+.category li a:hover {
+  color: #8f8f8f;
+}
+
+.category li {
+  display: block;
+  padding: 10px 0px;
+  border-bottom: 1px solid #8f8f8f;
+}
+
+.swal2-confirm,
+.swal2-cancel {
+  width: 100px;
+  font-weight: bold;
+}
