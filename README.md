@@ -6,7 +6,7 @@
 
 ![](https://i.imgur.com/F8Wqy5K.gif)
 
-- [Live demo](http://114.35.196.101:82/)
+[Live demo](http://114.35.196.101:82/)
 
 ## 使用技術
 
