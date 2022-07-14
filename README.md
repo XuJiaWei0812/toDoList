@@ -12,11 +12,11 @@
 
 前端:HTML、CSS、JavaScript
 
-前端框架:vue、react hook、Bootstrap(css)
+前端框架:Vue、React hook、Bootstrap(css)
 
 後端:PHP、Python
 
-後端框架:flask
+後端框架:Flask
 
 資料庫:MySQL
 
